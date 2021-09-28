@@ -1,0 +1,15 @@
+export default {
+  maxXs: 374,
+  minSm: 375,
+  maxSm: 575,
+  minMd: 576,
+  maxMd: 767,
+  minLg: 768,
+  maxLg: 991,
+  minXl: 992,
+  maxXl: 1199,
+  minXXl: 1200,
+  maxXXl: 1439,
+  minXXXl: 1440,
+  maxXXXl: 1679,
+};
