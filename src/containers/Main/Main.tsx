@@ -157,11 +157,12 @@ const Main: React.FC<{}> = () => {
 
   return (
     <div className={classes.root}>
-      <div className={classes.header} data-test="main-header">
+      <div className={classes.header}>
         <img
           alt="Anymind"
           src="https://anymindgroup.com/wp-content/themes/anymind/img/logo_white.svg"
           className={classes.logo}
+          data-test="main-logo"
         />
         {!activeSidebar ? (
           <button className={classes.toggleButton} onClick={handleToggleMenu}>

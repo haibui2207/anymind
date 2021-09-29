@@ -19,7 +19,7 @@ export default createUseStyles({
     borderBottom: `1px solid ${COLORS.borderBlue}`,
   },
   content: {
-    flex: '1 0 0',
+    flex: "1 0 0",
     overflow: "auto",
     borderBottom: `1px solid ${COLORS.borderBlue}`,
   },
@@ -63,6 +63,7 @@ export default createUseStyles({
     color: COLORS.textWhite,
     backgroundColor: COLORS.bgBlack,
     transition: "opacity .2s ease",
-    "&:hover": { opacity: 0.85 },
+    "&:not(:disabled):hover": { opacity: 0.85 },
+    "&:disabled": { opacity: 0.5, cursor: "not-allowed" },
   },
 });

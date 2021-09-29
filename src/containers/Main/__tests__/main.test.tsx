@@ -49,8 +49,8 @@ describe("Testing Main", (): void => {
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 
-  it("should have a header", (): void => {
-    expect(wrapper.find('[data-test="main-header"]')).toHaveLength(1);
+  it("should have a logo", (): void => {
+    expect(wrapper.find('[data-test="main-logo"]')).toHaveLength(1);
   });
 
   it("should have a sidebar section", (): void => {

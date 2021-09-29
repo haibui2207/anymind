@@ -18,7 +18,6 @@ const Conversation: React.FC<{}> = () => {
     activeChannel,
     setDraftMessage,
   } = useConversationContext();
-  console.log(draftMessage);
 
   const [postMessage, { called, loading, error }] = useMutation(
     apiUtil.POST_MESSAGE
@@ -42,7 +41,7 @@ const Conversation: React.FC<{}> = () => {
   );
 
   const handleSubmit = useCallback((): void => {
-    if (!loading) {
+    if (!loading && draftMessage) {
       postMessage({
         variables: {
           channelId: activeChannel?.id || "",
@@ -66,13 +65,13 @@ const Conversation: React.FC<{}> = () => {
           placeholder="Type your message here..."
           className={classes.editor}
           onChange={handleInputChange}
-          value={draftMessage?.text}
+          value={draftMessage?.text || ''}
           data-test="conversation-chat-box"
         />
         <button
           className={classes.sendButton}
           title="Send message"
-          disabled={loading}
+          disabled={loading || !draftMessage?.text}
           onClick={handleSubmit}
           data-test="conversation-submit-button"
         >

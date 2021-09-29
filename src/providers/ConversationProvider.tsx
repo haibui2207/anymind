@@ -19,9 +19,9 @@ export interface IConversation {
   setUsers: (users: IUser[]) => void;
   setChannels: (channels: IChannel[]) => void;
   setMessages: (messages: IMessage[]) => void;
-  setActiveUser: (user: IUser) => void;
-  setActiveChannel: (channel: IChannel) => void;
-  setDraftMessage: (draftMessage: IDraftMessage) => void;
+  setActiveUser: (user?: IUser) => void;
+  setActiveChannel: (channel?: IChannel) => void;
+  setDraftMessage: (draftMessage?: IDraftMessage) => void;
   setActiveSidebar: (active: boolean) => void;
 }
 
