@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing Main > Conversation > Empty should render match snapshot 1`] = `
+<div
+  className="root-0-2-1"
+>
+  <img
+    alt="No message"
+    className="image-0-2-2"
+    data-test="empty-image"
+    src="empty-conversation.jpg"
+  />
+  <h2
+    className="title-0-2-3"
+    data-test="empty-title"
+  >
+    No message found
+  </h2>
+  <p
+    className="description-0-2-4"
+    data-test="empty-description"
+  >
+    Let's start your conversation
+  </p>
+</div>
+`;

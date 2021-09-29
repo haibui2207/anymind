@@ -1,25 +1,20 @@
-import React from 'react';
-import { mount, shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import React from "react";
+import { shallow } from "enzyme";
+import toJson from "enzyme-to-json";
 
-import CustomSelect from '../Select';
+import CustomSelect from "../Select";
 
-describe('Testing Select component', () => {
-  let wrapper;
+describe("Testing Select component", (): void => {
   const props = {
-    name: 'select',
+    name: "select",
     onChange: jest.fn(),
     options: [
-      { label: 'Option 1', value: 1 },
-      { label: 'Option 2', value: 2 },
+      { label: "Option 1", value: 1 },
+      { label: "Option 2", value: 2 },
     ],
   };
 
-  beforeAll(() => {
-    wrapper = mount(<CustomSelect {...props} />);
-  });
-
-  it('should render match snapshot', () => {
+  it("should render match snapshot", (): void => {
     const wrapper = shallow(<CustomSelect {...props} />);
     expect(toJson(wrapper)).toMatchSnapshot();
   });

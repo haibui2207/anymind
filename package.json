@@ -14,7 +14,9 @@
     "classnames": "^2.3.1",
     "enzyme-to-json": "^3.6.2",
     "graphql": "^15.6.0",
+    "isomorphic-dompurify": "^0.15.0",
     "react": "^17.0.2",
+    "react-app-polyfill": "^2.0.0",
     "react-dom": "^17.0.2",
     "react-jss": "^10.8.0",
     "react-scripts": "4.0.3",
@@ -38,12 +40,19 @@
     "production": [
       ">0.2%",
       "not dead",
-      "not op_mini all"
+      "not op_mini all",
+      "IE 11"
     ],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
-      "last 1 safari version"
+      "last 1 safari version",
+      "IE 11"
     ]
+  },
+  "devDependencies": {
+    "@types/enzyme": "^3.10.9",
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.3",
+    "enzyme": "^3.11.0"
   }
 }

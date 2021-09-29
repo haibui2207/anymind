@@ -1,7 +1,0 @@
-{
-  "compilerOptions": {
-    "baseUrl": ".",
-    "isolatedModules": false,
-    "jsx": "react"
-  }
-}

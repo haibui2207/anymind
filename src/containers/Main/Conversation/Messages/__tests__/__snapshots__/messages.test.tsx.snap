@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing Main > Conversation > Messages should render match snapshot 1`] = `
+<div
+  className="root-0-2-1"
+>
+  abc
+</div>
+`;

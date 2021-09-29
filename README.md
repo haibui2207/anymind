@@ -3,13 +3,19 @@
 Install packages
 
 ```bash
-npm start
+npm install
 ```
 
 Start app
 
 ```bash
 npm start
+```
+
+Run test
+
+```bash
+npm run test
 ```
 
 ## # Requirements
@@ -28,4 +34,7 @@ npm start
 - [x] Suggest better UI design (Optional)
 - [x] Do not use Redux or others state-management libs, just Context API
 - [x] Use CSS-in-JS solutions
+- [x] Unit test / Testable
+- [ ] Crossbrowser (IE, Firefox,...)
+- [ ] Responsive
 - [ ] Deadline 10h am Sunday (5 days from 28/09/2021)

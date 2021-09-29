@@ -8,10 +8,29 @@ html {
   font-size: 16px;
 }
 
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+button,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+a {
+  transition: font-size 0.3s ease, line-height 0.3s ease;
+}
+
 /* Custom scrollbar styles */
 body::-webkit-scrollbar,
 .custom-scrollbar::-webkit-scrollbar {
-  width: 3px;
+  width: 10px;
   height: 3px;
 }
 body::-webkit-scrollbar-track,
@@ -20,7 +39,7 @@ body::-webkit-scrollbar-track,
 }
 body::-webkit-scrollbar-thumb,
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #c80030;
+  background: rgba(178, 178, 178, 0.6);
   border-radius: 10px;
 }
 body::-webkit-scrollbar-thumbhover,

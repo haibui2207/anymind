@@ -2,15 +2,17 @@ import { createUseStyles } from "react-jss";
 
 import { rem } from "../../../utils/jss";
 import COLORS from "../../../constants/COLORS";
+import BREAKPOINTS from "../../../constants/BREAKPOINTS";
 
 export default createUseStyles({
   root: {
-    flex: "30% 0 0",
-    minWidth: rem(320),
+    width: rem(320),
     boxSizing: "border-box",
     padding: [rem(16), rem(16), rem(24)],
-    borderRight: `1px solid ${COLORS.borderBlue}`,
     backgroundColor: COLORS.bgBlack,
+    height: "100%",
+    transform: "translateX(0)",
+    transition: "width .5s ease, padding .3s ease, transform .5s ease",
   },
   infoWrapper: { display: "flex", alignItems: "center", marginBottom: rem(32) },
   infoTitle: {
@@ -32,7 +34,6 @@ export default createUseStyles({
     alignItems: "center",
     justifyContent: "center",
     marginRight: rem(12),
-    cursor: "none",
   },
   avatar: { width: "100%" },
   title: {
@@ -57,6 +58,38 @@ export default createUseStyles({
     "&.active": {
       fontWeight: "bold",
       color: COLORS.textWhite,
+    },
+  },
+
+  [`@media only screen and (max-width: ${BREAKPOINTS.maxLg}px)`]: {
+    root: { width: rem(260) },
+  },
+  [`@media only screen and (max-width: ${BREAKPOINTS.maxMd}px)`]: {
+    root: { width: rem(240), padding: [rem(16), rem(8), rem(24)] },
+    infoWrapper: { marginBottom: rem(24) },
+    infoTitle: { fontSize: rem(12), lineHeight: rem(16) },
+    avatarWrapper: { width: rem(40), height: rem(40), marginRight: rem(8) },
+    title: { fontSize: rem(16), lineHeight: rem(20) },
+    link: { padding: [rem(8)], fontSize: rem(12), lineHeight: rem(16) },
+  },
+  [`@media only screen and (max-width: ${BREAKPOINTS.maxSm}px)`]: {
+    root: {
+      position: "absolute",
+      top: 0,
+      left: 0,
+      "&:not(.show)": { transform: "translateX(-100%)" },
+    },
+    toggleButton: {
+      display: "block",
+      position: "absolute",
+      right: 0,
+      width: rem(50),
+      height: rem(50),
+      transform: "translateX(100%)",
+      color: COLORS.textWhite,
+      cursor: "pointer",
+      backgroundColor: COLORS.bgBlack,
+      border: "none",
     },
   },
 });

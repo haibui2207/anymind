@@ -2,6 +2,7 @@ import { createUseStyles } from "react-jss";
 
 import { rem } from "../../utils/jss";
 import COLORS from "../../constants/COLORS";
+import BREAKPOINTS from "../../constants/BREAKPOINTS";
 
 export default createUseStyles({
   root: {
@@ -12,20 +13,37 @@ export default createUseStyles({
     overflow: "hidden",
   },
   header: {
-    flex: "none",
-    textAlign: "center",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
     padding: rem(16),
-    margin: 0,
-    color: COLORS.textWhite,
+    flex: "none",
+    height: rem(40),
     backgroundColor: COLORS.bgBlack01,
   },
-  content: { flex: 1, display: "flex" },
-  conversation: { flex: 1, boxSizing: "border-box" },
-  conversationHeader: {
-    margin: 0,
-    padding: rem(16),
-    fontSize: rem(24),
-    lineHeight: rem(32),
-    borderBottom: `1px solid ${COLORS.borderBlue}`,
+  logo: { display: "block", height: "100%", flex: "none" },
+  toggleButton: { display: "none" },
+  content: {
+    flex: 1,
+    display: "flex",
+    overflow: "hidden",
+    position: "relative",
+  },
+
+  [`@media only screen and (max-width: ${BREAKPOINTS.maxSm}px)`]: {
+    header: { justifyContent: "space-between" },
+    logo: { height: "80%" },
+    toggleButton: {
+      display: "flex",
+      marginLeft: rem(16),
+      backgroundColor: COLORS.bgWhite,
+      border: "none",
+      borderRadius: rem(4),
+      width: rem(30),
+      height: rem(30),
+      alignItems: "center",
+      justifyContent: "center",
+      cursor: "pointer",
+    },
   },
 });

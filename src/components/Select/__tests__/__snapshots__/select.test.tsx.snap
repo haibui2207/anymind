@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing Select component should render match snapshot 1`] = `
+<ForwardRef
+  className="select-0-2-1"
+  classNamePrefix="custom-react-select"
+  components={
+    Object {
+      "DropdownIndicator": [Function],
+    }
+  }
+  instanceId="select"
+  isDisabled={false}
+  isSearchable={false}
+  name="select"
+  onChange={[Function]}
+  options={
+    Array [
+      Object {
+        "label": "Option 1",
+        "value": 1,
+      },
+      Object {
+        "label": "Option 2",
+        "value": 2,
+      },
+    ]
+  }
+/>
+`;

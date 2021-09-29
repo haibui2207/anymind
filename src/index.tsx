@@ -1,3 +1,6 @@
+import "react-app-polyfill/ie11";
+import "react-app-polyfill/stable";
+import "./assets/font-icons/style.css";
 import "./index.css";
 
 import React from "react";

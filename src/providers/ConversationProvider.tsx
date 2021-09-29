@@ -8,35 +8,43 @@ import React, {
 
 import { IChannel, IDraftMessage, IMessage, IUser } from "../models";
 
-interface IConversation {
+export interface IConversation {
   users: IUser[];
   channels: IChannel[];
   messages: IMessage[];
   draftMessage?: IDraftMessage;
   activeUser?: IUser;
   activeChannel?: IChannel;
+  activeSidebar: boolean;
   setUsers: (users: IUser[]) => void;
   setChannels: (channels: IChannel[]) => void;
   setMessages: (messages: IMessage[]) => void;
   setActiveUser: (user: IUser) => void;
   setActiveChannel: (channel: IChannel) => void;
   setDraftMessage: (draftMessage: IDraftMessage) => void;
+  setActiveSidebar: (active: boolean) => void;
 }
 
-const ConversationContext = createContext<IConversation>({
+export const defaultContextValue: IConversation = {
   users: [],
   channels: [],
   messages: [],
   draftMessage: undefined,
   activeUser: undefined,
   activeChannel: undefined,
+  activeSidebar: false,
   setUsers: () => {},
   setChannels: () => {},
   setMessages: () => {},
   setDraftMessage: () => {},
   setActiveUser: () => {},
   setActiveChannel: () => {},
-});
+  setActiveSidebar: () => {},
+};
+
+export const ConversationContext = createContext<IConversation>(
+  defaultContextValue
+);
 
 export const useConversationContext = () =>
   useContext<IConversation>(ConversationContext);
@@ -56,6 +64,7 @@ const ConversationProvider: React.FC<IProps> = ({ children }) => {
   const [activeChannel, setActiveChannel] = useState<IChannel | undefined>(
     undefined
   );
+  const [activeSidebar, setActiveSidebar] = useState<boolean>(false);
 
   const restoreData = useCallback((): void => {
     const data = localStorage.getItem("conversationContext");
@@ -63,7 +72,6 @@ const ConversationProvider: React.FC<IProps> = ({ children }) => {
       const jsonData = JSON.parse(data) as IConversation;
       if (jsonData.users) setUsers(jsonData.users);
       if (jsonData.channels) setChannels(jsonData.channels);
-      if (jsonData.messages) setMessages(jsonData.messages);
       if (jsonData.draftMessage) setDraftMessage(jsonData.draftMessage);
       if (jsonData.activeUser) setActiveUser(jsonData.activeUser);
       if (jsonData.activeChannel) setActiveChannel(jsonData.activeChannel);
@@ -76,7 +84,6 @@ const ConversationProvider: React.FC<IProps> = ({ children }) => {
       JSON.stringify({
         users,
         channels,
-        messages,
         draftMessage,
         activeUser,
         activeChannel,
@@ -105,12 +112,14 @@ const ConversationProvider: React.FC<IProps> = ({ children }) => {
         draftMessage,
         activeUser,
         activeChannel,
+        activeSidebar,
         setUsers,
         setChannels,
         setMessages,
         setDraftMessage,
         setActiveUser,
         setActiveChannel,
+        setActiveSidebar,
       }}
     >
       {children}
