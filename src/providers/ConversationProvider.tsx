@@ -91,14 +91,15 @@ const ConversationProvider: React.FC<IProps> = ({ children }) => {
     );
   }, [users, channels, draftMessage, messages, activeUser, activeChannel]);
 
-  useEffect(() => {
+  useEffect((): void => {
     restoreData();
   }, []);
 
-  useEffect(() => {
+  useEffect((): (() => void) => {
     window.addEventListener("beforeunload", persistData);
 
-    return () => {
+    return (): void => {
+      persistData();
       window.removeEventListener("beforeunload", persistData);
     };
   }, [persistData]);

@@ -4,7 +4,7 @@ import { rem } from "../../../../utils/jss";
 import COLORS from "../../../../constants/COLORS";
 
 export default createUseStyles({
-  root: {},
+  root: { overflow: "auto", height: "100%" },
   moreButton: {
     border: "none",
     textAlign: "center",

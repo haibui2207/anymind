@@ -16,6 +16,7 @@ const Sidebar: React.FC<{}> = () => {
     activeUser,
     activeChannel,
     activeSidebar,
+    setMessages,
     setDraftMessage,
     setActiveUser,
     setActiveChannel,
@@ -26,9 +27,9 @@ const Sidebar: React.FC<{}> = () => {
     (channel: IChannel): void => {
       if (activeChannel?.id !== channel.id) {
         setActiveChannel(channel);
+        setMessages([]);
         setActiveSidebar(false);
         setDraftMessage(undefined);
-        // TODO fetch latest message when channel change
       }
     },
     [activeChannel]
@@ -38,7 +39,6 @@ const Sidebar: React.FC<{}> = () => {
     (user: IUser): void => {
       if (activeUser?.id !== user.id) {
         setActiveUser(user);
-        // TODO fetch latest message when user change
       }
     },
     [activeUser]

@@ -40,7 +40,7 @@ export default createUseStyles({
   },
   content: {
     flex: "1 0 0",
-    overflow: "auto",
+    overflow: "hidden",
     borderBottom: `1px solid ${COLORS.borderBlue}`,
   },
   chatBox: {
