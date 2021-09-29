@@ -6,6 +6,7 @@ import BREAKPOINTS from "../../../constants/BREAKPOINTS";
 
 export default createUseStyles({
   root: {
+    overflow: "auto",
     width: rem(320),
     boxSizing: "border-box",
     padding: [rem(16), rem(16), rem(24)],

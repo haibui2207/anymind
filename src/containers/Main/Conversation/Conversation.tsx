@@ -1,6 +1,8 @@
 import React, { memo, useCallback, useEffect } from "react";
 import { useMutation } from "@apollo/client";
-import classNames from 'classnames';
+import classNames from "classnames";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 import { apiUtil } from "../../../utils";
 import { useConversationContext } from "../../../providers/ConversationProvider";
@@ -18,6 +20,7 @@ const Conversation: React.FC<{}> = () => {
     activeChannel,
     setDraftMessage,
   } = useConversationContext();
+  
 
   const [postMessage, { called, loading, error }] = useMutation(
     apiUtil.POST_MESSAGE
@@ -29,12 +32,12 @@ const Conversation: React.FC<{}> = () => {
   }, [called, loading, error]);
 
   // TODO using debounce if necessary
-  const handleInputChange = useCallback(
-    ({ target: { value } }: React.ChangeEvent<HTMLTextAreaElement>): void => {
+  const handleEditorChange = useCallback(
+    (text: string): void => {
       setDraftMessage({
         channelId: activeChannel?.id || "",
         userId: activeUser?.id || "",
-        text: value,
+        text,
       });
     },
     [activeUser, activeChannel]
@@ -57,16 +60,20 @@ const Conversation: React.FC<{}> = () => {
       <h2 className={classes.header} data-test="conversation-channel-name">
         {activeChannel?.name}
       </h2>
-      <div className={classNames('custom-scrollbar', classes.content)}>
+      <div className={classNames("custom-scrollbar", classes.content)}>
         {messages.length > 0 ? <Messages /> : <Empty />}
       </div>
       <div className={classes.chatBox}>
-        <textarea
-          placeholder="Type your message here..."
-          className={classes.editor}
-          onChange={handleInputChange}
-          value={draftMessage?.text || ''}
-          data-test="conversation-chat-box"
+        <CKEditor
+          editor={ClassicEditor}
+          data={draftMessage?.text || ""}
+          onChange={(event, editor) => {
+            const data = editor.getData();
+            handleEditorChange(data);
+          }}
+          config={{
+            placeholder: "Type your message here...",
+          }}
         />
         <button
           className={classes.sendButton}

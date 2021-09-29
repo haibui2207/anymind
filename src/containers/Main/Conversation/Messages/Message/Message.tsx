@@ -36,7 +36,10 @@ const Message: React.FC<IProps> = ({ user, text, datetime, isSender }) => {
             {formatDateTime(datetime)}
           </span>
         </p>
-        <div className={classes.message} data-test="message-text">
+        <div
+          className={classNames("ck-content", classes.message)}
+          data-test="message-text"
+        >
           <StaticHTML stringHtml={text} />
         </div>
       </div>

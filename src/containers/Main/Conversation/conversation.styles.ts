@@ -9,6 +9,26 @@ export default createUseStyles({
     boxSizing: "border-box",
     display: "flex",
     flexDirection: "column",
+    "& .ck": {
+      "&.ck-editor": { flex: 1 },
+      "&.ck-toolbar": { display: "none" },
+      "&.ck-editor__main": { height: "100%" },
+      "&.ck-editor__editable": {
+        height: "100%",
+        "& p": { fontSize: rem(14), lineHeight: rem(20) },
+      },
+      "&.ck-editor__editable_inline": {
+        border: "none",
+        "&::-webkit-scrollbar": { width: 10, height: 3 },
+        "&::-webkit-scrollbar-track, &::-webkit-scrollbar-thumbhover": {
+          background: "transparent",
+        },
+        "&::-webkit-scrollbar-thumb": {
+          background: "rgba(178, 178, 178, 0.6)",
+          borderRadius: 10,
+        },
+      },
+    },
   },
   header: {
     flex: "none",
@@ -23,32 +43,11 @@ export default createUseStyles({
     overflow: "auto",
     borderBottom: `1px solid ${COLORS.borderBlue}`,
   },
-  chatBox: { flex: "none", display: "flex" },
-  editor: {
-    flex: 1,
-    height: rem(80),
-    padding: rem(12),
-    resize: "none",
-    width: "100%",
-    lineHeight: "normal",
-    fontWeight: 400,
-    boxSizing: "border-box",
-    color: COLORS.textBlack,
-    backgroundColor: COLORS.bgWhite,
-    border: "none",
-    "&:focus": { outline: "none", borderColor: COLORS.primary },
-    "&::placeholder": { color: COLORS.textGray },
-    "-moz-appearance": "textfield",
-    "&::-webkit-outer-spin-button, &::-webkit-inner-spin-button": {
-      "-webkit-appearance": "none",
-    },
-    "&::-ms-clear, &::-ms-reveal": { display: "none" },
-    "&:-ms-input-placeholder": { color: COLORS.textGray },
-    "&:disabled": {
-      cursor: "not-allowed",
-      color: COLORS.textGray,
-      backgroundColor: COLORS.bgGray,
-    },
+  chatBox: {
+    flex: "none",
+    display: "flex",
+    minHeight: rem(40),
+    maxHeight: rem(120),
   },
   sendButton: {
     flex: "none",
