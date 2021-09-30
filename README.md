@@ -36,3 +36,10 @@ npm run test
 - [x] Use CSS-in-JS solutions
 - [x] Unit test / Testable
 - [x] Responsive
+
+## # Some logics different with requirements
+- Channel will only has a button load old messages, this button only show when user scroll on top channel and will be hidden if no old messages to load
+- Channel has not load new messages button, new messages will load automatically every 5 seconds
+- Handle error only integrated with mutation request, will show small popup below channel to inform to user and keep their message within editor. Rest will show on alert popup
+- Message box using CKEditor, all features of Editor are being hidden, you can chat multiple lines, no limitation
+- Channel will fetch messages every 5s (fake realtime chatting)
