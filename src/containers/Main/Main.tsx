@@ -70,14 +70,21 @@ const Main: React.FC<{}> = () => {
     []
   );
 
-  const [fetchLatestMessages] = useLazyQuery<{
+  const [
+    fetchLatestMessages,
+    { called: fetchLatestMessagesCalled, refetch: refetchLatestMessages },
+  ] = useLazyQuery<{
     fetchLatestMessages: IMessage[];
   }>(apiUtil.FETCH_LATEST_MESSAGES, {
     onCompleted: handleFetchLatestMessagesSuccess,
     onError: handleFetchLatestMessagesFailed,
+    notifyOnNetworkStatusChange: true,
   });
 
-  const [fetchMoreMessages, { called, refetch }] = useLazyQuery<{
+  const [
+    fetchMoreMessages,
+    { called: fetchMoreMessagesCalled, refetch: refetchMoreMessages },
+  ] = useLazyQuery<{
     fetchMoreMessages: IMessage[];
   }>(apiUtil.FETCH_MORE_MESSAGES, {
     onCompleted: handleFetchMoreMessagesSuccess,
@@ -115,20 +122,24 @@ const Main: React.FC<{}> = () => {
 
   useEffect((): (() => void) => {
     const timer = setInterval((): void => {
-      if (activeChannel && messages.length > 0) {
-        const variables: {
-          channelId: string;
-          messageId: string;
-          old: boolean;
-        } = {
-          channelId: activeChannel.id,
-          messageId: messages[messages.length - 1].messageId,
-          old: false,
-        };
-        if (called && refetch) {
-          refetch(variables);
+      if (activeChannel) {
+        if (messages.length > 0) {
+          const variables: { [key: string]: any } = {
+            channelId: activeChannel.id,
+            messageId: messages[messages.length - 1].messageId,
+            old: false,
+          };
+          if (fetchMoreMessagesCalled && refetchMoreMessages) {
+            refetchMoreMessages(variables);
+          } else {
+            fetchMoreMessages({ variables: variables });
+          }
         } else {
-          fetchMoreMessages({ variables: variables });
+          if (fetchLatestMessagesCalled && refetchLatestMessages) {
+            refetchLatestMessages({ channelId: activeChannel.id });
+          } else {
+            fetchLatestMessages({ variables: { channelId: activeChannel.id } });
+          }
         }
       }
     }, 5000);
@@ -136,7 +147,12 @@ const Main: React.FC<{}> = () => {
     return (): void => {
       clearInterval(timer);
     };
-  }, [called, activeChannel, messages]);
+  }, [
+    messages,
+    activeChannel,
+    fetchMoreMessagesCalled,
+    fetchLatestMessagesCalled,
+  ]);
 
   const handleToggleMenu = useCallback((): void => {
     setActiveSidebar(!activeSidebar);
