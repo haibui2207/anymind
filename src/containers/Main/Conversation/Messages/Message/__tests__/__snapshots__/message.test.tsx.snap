@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing Main > Conversation > Messages > Message should render match snapshot 1`] = `
+<div
+  className="root-0-2-1 reverse"
+>
+  <div
+    className="avatarWrapper-0-2-2"
+  >
+    <img
+      alt="Sam"
+      className="avatar-0-2-3"
+      data-test="message-user-avatar"
+      src=""
+    />
+  </div>
+  <div
+    className="content-0-2-6"
+  >
+    <p
+      className="userName-0-2-4"
+      data-test="message-user-name"
+    >
+      Sam
+      <span
+        className="dateTime-0-2-5"
+        data-test="message-date-time"
+      >
+        10:51:06 AM
+      </span>
+    </p>
+    <div
+      className="ck-content message-0-2-7"
+      data-test="message-text"
+    >
+      <StaticHTML
+        stringHtml="Text from Sam"
+      />
+    </div>
+  </div>
+</div>
+`;

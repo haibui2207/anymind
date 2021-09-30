@@ -37,7 +37,7 @@ const Conversation: React.FC<{}> = () => {
     [messages]
   );
 
-  const handlePostMessageFailed = useCallback((error: ApolloError): void => {
+  const handlePostMessageFailed = useCallback((): void => {
     setErrorPopupStatus(true);
     setTimeout((): void => {
       setErrorPopupStatus(false);
@@ -76,10 +76,12 @@ const Conversation: React.FC<{}> = () => {
   });
 
   useEffect((): void => {
-    if (called && refetch) {
-      refetch({ channelId: activeChannel?.id });
-    } else {
-      fetchLatestMessages({ variables: { channelId: activeChannel?.id } });
+    if (activeChannel) {
+      if (called && refetch) {
+        refetch({ channelId: activeChannel.id });
+      } else {
+        fetchLatestMessages({ variables: { channelId: activeChannel.id } });
+      }
     }
   }, [called, activeChannel]);
 
