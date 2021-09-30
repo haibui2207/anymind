@@ -47,12 +47,18 @@ const Main: React.FC<{}> = () => {
 
   const handleFetchMoreMessagesSuccess = useCallback(
     (data: { fetchMoreMessages: IMessage[] }): void => {
-      console.log(messages);
-      console.log(data.fetchMoreMessages);
-
-      setMessages([...messages, ...data.fetchMoreMessages]);
+      if (data.fetchMoreMessages.length > 0) {
+        setMessages([...messages, ...data.fetchMoreMessages]);
+        // Waiting messages update
+        setTimeout(() => {
+          const messagesBox = document.getElementById("messages-box");
+          if (messagesBox) {
+            messagesBox.scrollTop = messagesBox.scrollHeight;
+          }
+        }, 100);
+      }
     },
-    [messages]
+    [messages, document]
   );
 
   const handleFetchMoreMessagesFailed = useCallback(
@@ -119,8 +125,7 @@ const Main: React.FC<{}> = () => {
           messageId: messages[messages.length - 1].messageId,
           old: false,
         };
-        if (called) {
-          // @ts-ignore
+        if (called && refetch) {
           refetch(variables);
         } else {
           fetchMoreMessages({ variables: variables });

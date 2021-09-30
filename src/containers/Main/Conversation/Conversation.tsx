@@ -1,15 +1,15 @@
-import React, { memo, useCallback, useEffect } from "react";
+import React, { memo, useCallback, useEffect, useState } from "react";
 import { useLazyQuery, useMutation, ApolloError } from "@apollo/client";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 import { apiUtil } from "../../../utils";
+import { IMessage } from "../../../models";
 import { useConversationContext } from "../../../providers/ConversationProvider";
 
 import Empty from "./Empty";
 import Messages from "./Messages";
 import useStyles from "./conversation.styles";
-import { IMessage } from "../../../models";
 
 const Conversation: React.FC<{}> = () => {
   const classes = useStyles();
@@ -21,6 +21,7 @@ const Conversation: React.FC<{}> = () => {
     setMessages,
     setDraftMessage,
   } = useConversationContext();
+  const [shownErrorPopup, setErrorPopupStatus] = useState<boolean>(false);
 
   const handlePostMessageSuccess = useCallback(
     (data: { postMessage: IMessage }): void => {
@@ -37,9 +38,10 @@ const Conversation: React.FC<{}> = () => {
   );
 
   const handlePostMessageFailed = useCallback((error: ApolloError): void => {
-    // TODO show error cannot get list messages
-    window.alert("Cannot send message");
-    console.error(error);
+    setErrorPopupStatus(true);
+    setTimeout((): void => {
+      setErrorPopupStatus(false);
+    }, 3000);
   }, []);
 
   const handleFetchLatestMessagesSuccess = useCallback(
@@ -65,16 +67,21 @@ const Conversation: React.FC<{}> = () => {
     onError: handlePostMessageFailed,
   });
 
-  const [fetchLatestMessages] = useLazyQuery<{
+  const [fetchLatestMessages, { called, refetch }] = useLazyQuery<{
     fetchLatestMessages: IMessage[];
   }>(apiUtil.FETCH_LATEST_MESSAGES, {
     onCompleted: handleFetchLatestMessagesSuccess,
     onError: handleFetchLatestMessagesFailed,
+    notifyOnNetworkStatusChange: true,
   });
 
   useEffect((): void => {
-    fetchLatestMessages({ variables: { channelId: activeChannel?.id } });
-  }, [activeChannel]);
+    if (called && refetch) {
+      refetch({ channelId: activeChannel?.id });
+    } else {
+      fetchLatestMessages({ variables: { channelId: activeChannel?.id } });
+    }
+  }, [called, activeChannel]);
 
   // TODO using debounce if necessary
   const handleEditorChange = useCallback(
@@ -107,6 +114,9 @@ const Conversation: React.FC<{}> = () => {
       </h2>
       <div className={classes.content}>
         {messages.length > 0 ? <Messages /> : <Empty />}
+        {shownErrorPopup ? (
+          <div className={classes.errorPopup}>Cannot send the message</div>
+        ) : null}
       </div>
       <div className={classes.chatBox}>
         <CKEditor

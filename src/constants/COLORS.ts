@@ -9,7 +9,6 @@ export default {
   bgBlack: '#1a1d21',
   bgBlack01: '#141414',
   bgGray: '#F9F9F9',
-  bgGray01: '#F9F9F9',
 
   borderWhite: '#fff',
   borderBlack: '#333',
