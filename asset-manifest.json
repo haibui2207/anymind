@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/haibui2207/anymind-demo.git/static/css/main.a2f689de.chunk.css",
+    "main.js": "/haibui2207/anymind-demo.git/static/js/main.210bb198.chunk.js",
+    "main.js.map": "/haibui2207/anymind-demo.git/static/js/main.210bb198.chunk.js.map",
+    "runtime-main.js": "/haibui2207/anymind-demo.git/static/js/runtime-main.57aef34d.js",
+    "runtime-main.js.map": "/haibui2207/anymind-demo.git/static/js/runtime-main.57aef34d.js.map",
+    "static/js/2.2cdcd2f8.chunk.js": "/haibui2207/anymind-demo.git/static/js/2.2cdcd2f8.chunk.js",
+    "static/js/2.2cdcd2f8.chunk.js.map": "/haibui2207/anymind-demo.git/static/js/2.2cdcd2f8.chunk.js.map",
+    "static/js/3.cdfbad0d.chunk.js": "/haibui2207/anymind-demo.git/static/js/3.cdfbad0d.chunk.js",
+    "static/js/3.cdfbad0d.chunk.js.map": "/haibui2207/anymind-demo.git/static/js/3.cdfbad0d.chunk.js.map",
+    "index.html": "/haibui2207/anymind-demo.git/index.html",
+    "static/css/main.a2f689de.chunk.css.map": "/haibui2207/anymind-demo.git/static/css/main.a2f689de.chunk.css.map",
+    "static/js/2.2cdcd2f8.chunk.js.LICENSE.txt": "/haibui2207/anymind-demo.git/static/js/2.2cdcd2f8.chunk.js.LICENSE.txt",
+    "static/media/empty-conversation.8fb4e916.jpg": "/haibui2207/anymind-demo.git/static/media/empty-conversation.8fb4e916.jpg",
+    "static/media/style.css": "/haibui2207/anymind-demo.git/static/media/icomoon.b2f51036.woff",
+    "static/media/user-01.b0d542e2.svg": "/haibui2207/anymind-demo.git/static/media/user-01.b0d542e2.svg",
+    "static/media/user-02.c6075d3f.svg": "/haibui2207/anymind-demo.git/static/media/user-02.c6075d3f.svg",
+    "static/media/user-03.fae8153f.svg": "/haibui2207/anymind-demo.git/static/media/user-03.fae8153f.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.57aef34d.js",
+    "static/js/2.2cdcd2f8.chunk.js",
+    "static/css/main.a2f689de.chunk.css",
+    "static/js/main.210bb198.chunk.js"
+  ]
+}
